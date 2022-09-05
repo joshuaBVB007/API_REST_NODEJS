@@ -4,7 +4,7 @@ var app = express();
 
 app.get("/", function (req, res){
     console.log("SELECT");
-    connection.query("SELECT * FROM COUNTRY", function (err, result, fields) {
+    connection.query("SELECT * FROM COUNTRY limit 2", function (err, result, fields) {
         if (!err){ 
           res.json(result); console.log("Query succesfully");
         } 
