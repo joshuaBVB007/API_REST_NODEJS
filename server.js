@@ -2,7 +2,7 @@ import express from "express";
 import { connection } from "./db_connection.js"
 var app = express();
 
-
+app.listen(9000);
 
 app.get("/salida", function (req, res){
     console.log("SELECT");
@@ -17,5 +17,5 @@ app.get("/salida", function (req, res){
 });
 
 
-app.listen(9000);
+
 console.log("Escribe en tu navegador el localhost:9000")
