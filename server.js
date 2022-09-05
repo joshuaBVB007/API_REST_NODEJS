@@ -2,7 +2,9 @@ import express from "express";
 import { connection } from "./db_connection.js"
 var app = express();
 
-app.get("/", function (req, res){
+
+
+app.get("/salida", function (req, res){
     console.log("SELECT");
     connection.query("SELECT * FROM COUNTRY", function (err, result, fields) {
         if (!err){ 
