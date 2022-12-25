@@ -1,12 +1,26 @@
 import express from "express";
-import { connection } from "../src/db_connection.js"
+import { connection } from "../src/db_connection.js";
 var app = express();
 
-app.get("/", function (req, res){
-    console.log("SELECT");
-    connection.query("SELECT * FROM COUNTRY", function (err, result, fields) {
+
+app.get('/', (req, res) => {
+      connection.query("SELECT name FROM COUNTRY limit 1", function (err, result, fields) {
+          if (!err){ 
+            res.json(result); 
+            console.log("Query succesfully");
+          } 
+          else{ 
+            console.log(err);
+          }
+      });
+});
+
+app.get('/country/:nombre', (req, res) => {
+  const nombre_pais=req.params.nombre;
+      connection.query(`SELECT * FROM COUNTRY where Name='${nombre_pais}'`, function (err, result, fields) {
         if (!err){ 
-          res.json(result); console.log("Query succesfully");
+          res.json(result); 
+          console.log("Query succesfully");
         } 
         else{ 
           console.log(err);
@@ -14,27 +28,22 @@ app.get("/", function (req, res){
     });
 });
 
-// app.get("/:id",function(req,res){
-//   console.log("SELECT con ID");
-//   const { id }=req.params;
-//   var sql = "select * from COUNTRY WHERE NAME = ?";
-//   con.query(sql,[id],(err, result) => {
-//     if (!err){
-//         res.json(result[0]);
-//     }else{
-//       console.log(err)
-//     }
-//   });
-// });
+// select one city bt ID
+app.get("/cities/:Id",(req,res)=>{
+      const id_ciudad=req.params.Id;
+      connection.query(`SELECT * FROM CITY where ID=${id_ciudad}`, function (err, result, fields) {
+        if (!err){ 
+          res.json(result); 
+          console.log("Query succesfully");
+        } 
+        else{ 
+          console.log(err);
+        }
+    });
+})
 
-// app.post("/",function(req,res){
-//   const { id,nombre }=req.body;
-//   var sql = "insert into frutas values (?,?)";
-//   con.query(sql,[id,nombre],(err, result) => {
-//     if (err) throw err;
-//     console.log("1 record inserted");
-//   });
-// });
+
+
 
 app.listen(9000);
-console.log("Escribe en tu navegador el localhost:9000")
+console.log("go to url localhost:9000")
