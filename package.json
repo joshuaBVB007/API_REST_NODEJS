@@ -1,14 +1,22 @@
 {
   "name": "nodejs-mysql-api",
   "version": "1.0.0",
+<<<<<<< HEAD
   "description": "",
   "main": "index.js",
   "type": "module",
+=======
+  "description": "mi api en node",
+  "main": "server.js",
+  "type":"module",
+>>>>>>> 73fc51f21d56675a577dd772adf008b942204d5c
   "scripts": {
+    "start":"node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
+<<<<<<< HEAD
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
@@ -17,4 +25,7 @@
     "parse": "^3.4.4",
     "vue": "^3.2.37"
   }
+=======
+  "license": "ISC"
+>>>>>>> 73fc51f21d56675a577dd772adf008b942204d5c
 }
