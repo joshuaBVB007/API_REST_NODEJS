@@ -1,18 +1,15 @@
 import express from "express";
-import { connection } from "../src/db_connection.js";
-var app = express();
+import { connection } from "./db_connection.js";
+import path from "path";
 
+
+var app = express();
+var path_of_file=path.dirname('C:\\Users\\Usuario\\Desktop\\nodejsAPI\\public');
+//returns  C:\Users\Usuario\Desktop\nodejsAPI
+app.use(express.static(path_of_file + '/public'))
 
 app.get('/', (req, res) => {
-      connection.query("SELECT name FROM COUNTRY limit 1", function (err, result, fields) {
-          if (!err){ 
-            res.json(result); 
-            console.log("Query succesfully");
-          } 
-          else{ 
-            console.log(err);
-          }
-      });
+      res.sendFile("index.html");
 });
 
 app.get('/country/:nombre', (req, res) => {
@@ -41,9 +38,6 @@ app.get("/cities/:Id",(req,res)=>{
         }
     });
 })
-
-
-
 
 app.listen(9000);
 console.log("go to url localhost:9000")

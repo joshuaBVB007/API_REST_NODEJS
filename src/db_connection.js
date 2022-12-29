@@ -1,6 +1,6 @@
 import mysql from "mysql"
 
-export var connection = mysql.createConnection({
+var connection = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "password",
@@ -13,3 +13,6 @@ connection.connect(function(err) {
   } 
   console.log("Connected!"); 
 });
+
+
+export { connection };
