@@ -1,16 +1,37 @@
 import express from "express";
 import { connection } from "./db_connection.js";
+import { myEvent } from "./events.js";
 import path from "path";
-
+import fs from "fs";
 
 var app = express();
-var path_of_file=path.dirname('C:\\Users\\Usuario\\Desktop\\nodejsAPI\\public');
+var path_of_file=path.dirname('C:\\Users\\Usuario\\Desktop\\nodejsAPI\\public\\styles.css');
 //returns  C:\Users\Usuario\Desktop\nodejsAPI
 app.use(express.static(path_of_file + '/public'))
 
-app.get('/', (req, res) => {
-      res.sendFile("index.html");
+// register and event
+// myEvent.on('click',()=>{
+//   console.log('Que pasa weones')
+// })
+
+
+var content=""
+fs.readFile('C:\\Users\\Usuario\\Desktop\\nodejsAPI\\public\\styles.css',"utf8", (err, stats) => {
+  if (err) {
+    console.error(err);
+  }
+  content=stats;
 });
+
+
+app.get('/', (req, res) => {
+    res.sendFile("index.html");
+});
+
+app.get('/read',(req,res) => {
+    // we read the content from the file "atyles.css"
+    res.end(content)
+})
 
 app.get('/country/:nombre', (req, res) => {
   const nombre_pais=req.params.nombre;
