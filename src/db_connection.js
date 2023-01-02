@@ -1,6 +1,6 @@
-import mysql from "mysql"
+var sql_module=require("mysql")
 
-var connection = mysql.createConnection({
+var connection = sql_module.createConnection({
   host: "localhost",
   user: "root",
   password: "password",
@@ -15,4 +15,4 @@ connection.connect(function(err) {
 });
 
 
-export { connection };
+// export { connection };
