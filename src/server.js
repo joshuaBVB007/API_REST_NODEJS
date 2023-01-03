@@ -1,5 +1,5 @@
 var express = require('express');
-var sql= require("./db_connection.js");
+var sql_database_connection= require("./db_connection.js");
 const dir_name = require('../public/variables.js');
 const fs=require('fs')
 const path=require('path');
@@ -43,8 +43,8 @@ app.get('/size',(req,res) => {
 })
 
 app.get('/country/:nombre', (req, res) => {
-  const nombre_pais=req.params.nombre;
-      sql.connection.query(`SELECT * FROM COUNTRY where Name='${nombre_pais}'`, function (err, result, fields) {
+      const nombre_pais=req.params.nombre;
+      sql_database_connection.query(`SELECT * FROM COUNTRY where Name='${nombre_pais}'`, function (err, result, fields) {
         if (!err){ 
           res.json(result); 
           console.log("Query succesfully");
@@ -58,7 +58,7 @@ app.get('/country/:nombre', (req, res) => {
 // select one city bt ID
 app.get("/cities/:Id",(req,res)=>{
       const id_ciudad=req.params.Id;
-      sql.connection.query(`SELECT * FROM CITY where ID=${id_ciudad}`, function (err, result, fields) {
+      sql_database_connection.query(`SELECT * FROM CITY where ID=${id_ciudad}`, function (err, result, fields) {
         if (!err){ 
           res.json(result); 
           console.log("Query succesfully");
